@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">    
+    <title>Grandpy</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">  
+    <link href="../static/css/style.css" rel="stylesheet">  
+    
+    <!-- MAPS -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css">
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+</head>
+
+<body>
+    <div class="full-screen">
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar navbarHeader ">
+            <h4>Projet 07 - Grandpy robot</h4>
+        </nav>    
+    </header>
+
+
+<div class="titleGrandpy">
+    <h1>Grandpy robot</h1>
+</div>
+
+<div class="titleStory">
+    <h2>L'histoire d'une histoire...</h2>
+</div>
+
+    <div class="searchBar">      
+          <input type="text" class="form-control" id='message' cols='30' rows="3" placeholder="Bonjour Grandpy!">
+          <button class="btn btn-primary " id="getData">Dis moi Grandpy...</button>
+          <button class="btn btn-success" id="newSearch">Nouvelle recherche!</button>
+
+    </div>
+
+
+
+
+
+<div class="container fluid" id='reloadMessage'>
+  <h5>Arf, je n'ai pas trouvé grand chose à te raconter... Une autre question peut être?</h5>
+</div>
+
+<section>
+<div id='loader'>
+  <img src="../static/images/loader.gif">
+</div>
+
+<div id='notFound'>
+  <img class="notFoundImg" src="../static/images/notFound1.gif">
+</div>
+
+
+<div class="container " >
+    <div class="row justify-content-center elements" >
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="divstory"></div>
+    </div>
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="divmap" style="margin: 0;"></div>            
+      </div>          
+    </div>
+  </div>
+</section>
+
+
+  <div class="footer">
+    <h2>Antoine THIBAUD - Projet 07 - <a href="http://www.github.com/athd33">Github</a></h2>
+</div>
+
+
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/app.js"></script>
+<script src="/static/js/effects.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARRc-qhLPiegyZoFeImHQmDH4lUFs1gdw&callback=initMap"></script>
+</body>
+</div>
+</html>
+
+
+
