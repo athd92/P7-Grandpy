@@ -32,7 +32,7 @@ class Parser():
         for i in tempList:
             if i not in stop_words:
                 liste.append(i)
-        self.lowerQuestionWithoutWords = ' '.join(liste) 
+        self.lowerQuestionWithoutWords = ' '.join(liste)        
         return self.lowerQuestionWithoutWords
 
     def extract_question(self):
@@ -49,6 +49,7 @@ class Parser():
         for i in query:
             if i not in badWords:
                 finalString.append(i)
+        
         return finalString
         
 

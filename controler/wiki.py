@@ -18,8 +18,14 @@ class Wikipedia:
         try:
             place = wikipedia.summary(f"{self.query}", sentences=2) # two first sentences
         except wikipedia.exceptions.DisambiguationError as e:         
-            place = wikipedia.summary(e.options[0], sentences=2)
-
+            try:
+                place = wikipedia.summary(e.options[0], sentences=1)
+            except wikipedia.exceptions.DisambiguationError as e:
+                place = wikipedia.summary(e.options[1], sentences=1)       
+        
         return place
+
+
+
 
 

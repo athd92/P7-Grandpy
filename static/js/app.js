@@ -5,58 +5,18 @@ $(document).ready(function(){
         $('#newSearch').hide();
         $('#elements').hide();  
         $('#notFound').hide();
-        $('#getData').on('click', function(){
-            console.log("click");
-            let entry = {
-                    message: $('#message').val(),
-                };
-
-        $.ajax({                    // ajax request from input data
-            type:'POST',
-            url:`${window.origin}/entry`,
-            data:JSON.stringify(entry),            
-            contentType: 'application/json;charset=UTF-8',
-
-            beforeSend:function(){
-                console.log("before", entry);
-                $('#loader img').show();
-            },
-
-            complete:function(){
-                $('#loader img').hide();
-            },
-
-            success:function(data){      
-                if(content == false){                    
-                    $('#getData').hide();
-                    $('#newSearch').show();
-                    $('.divstory').append('<div id="mess"><p>' + data.data + '</p></div>');   
-                    
-         
-                    display_map(data.localisation.lat, data.localisation.lng);
-                    content = true;
-                }else{
-
-                }
-            },
-
-            error:function(e){
-                console.error(e);
-                if(content == false){
-                    $('#getData').hide();
-                    $('#reloadMessage').show();
-                    $('#notFound').show();
-                    $('#newSearch').show();
-
-                    content = true;
-                    console.log(content);
-                }                
-            }
-       });
+        $('#getData').on('click', function(){  // send ajax          
+            send_ajax_request();        
     });
 });
 
-$('#newSearch').click(function(){
+$(document).on('keypress',function(e) { // listen enter key
+    if(e.which == 13) {
+        send_ajax_request();
+    }
+});
+
+$('#newSearch').click(function(){   // reload page for new search
     location.reload();
     $('#message').val('');
 })
@@ -91,19 +51,50 @@ function display_map(latitude, longitude){    // setting render on DOM
     
 
 
-function display_chart(){
-    var data = {
-        
-        labels:["mon", "tue", "wed","thu","fri"],
-        series:[15,40,6,10]
+function send_ajax_request(){   // the ajax request function
+
+    let entry = {
+        message: $('#message').val(),
     };
 
-    var options = {
-        width:800,
-        height:600
-    };
+    $.ajax({                    // ajax request from input data
+        type:'POST',
+        url:`${window.origin}/entry`,
+        data:JSON.stringify(entry),            
+        contentType: 'application/json;charset=UTF-8',
 
-    var mychart = new Chart.Line('.ct-chart', data, options);
+        beforeSend:function(){            
+            $('#loader img').show();
+        },
+
+        complete:function(){
+            $('#loader img').hide();
+        },
+
+        success:function(data){      
+            if(content == false){                    
+                $('#getData').hide();
+                $('#newSearch').show();
+                $('.divstory').append('<div id="mess"><p>' + data.data + '</p></div>');   
+                
+     
+                display_map(data.localisation.lat, data.localisation.lng);
+                content = true;
+            }else{
+
+            }
+        },
+
+        error:function(e){
+            console.error(e);
+            if(content == false){
+                $('#getData').hide();
+                $('#reloadMessage').show();
+                $('#notFound').show();
+                $('#newSearch').show();
+                content = true;                
+            }                
+        }
+   });
 };
-
-display_chart();
+  

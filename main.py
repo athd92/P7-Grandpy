@@ -5,10 +5,6 @@ from wordlist import stopWords
 from controler.parser import Parser
 from controler.wiki import Wikipedia
 from controler.googleMaps import GoogleMaps
-import pandas as pd
-from matplotlib import pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
 
 app = Flask(__name__)
 
@@ -23,7 +19,7 @@ def homepage():
 
 
 @app.route('/entry', methods=['POST']) #FONCTION QUI VA RECUPERER LE JSON 
-def main_function():
+def createEntry():
 
     message = json.loads(request.data)   # get message from ajax request       
     questionJson = Parser(message)
@@ -41,10 +37,6 @@ def main_function():
     return jsonify({"data": story, 'localisation': localisation})
 
 
-@app.route('/chart', methods=['GET', 'POST'])
-def chart_function():
-
-    return render_template('chart.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

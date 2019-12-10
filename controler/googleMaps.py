@@ -1,4 +1,3 @@
-import os
 import googlemaps
 from datetime import datetime
 
@@ -13,10 +12,10 @@ class GoogleMaps:
 
     def get_geocode(self):
         """Method used to check the value of the maps infos initialized"""
-        apiKey = os.environ.get('API_KEY_MAPS')
-        gmaps = googlemaps.Client(apiKey)
+
+        gmaps = googlemaps.Client(key='AIzaSyCEp0QNbJZn4GZYVzSCn3xjwAQgzNq7KHk')
         # Geocoding an address
-        geocode_result = gmaps.geocode(self.query,  language='fr')
+        geocode_result = gmaps.geocode(self.query)
         return geocode_result
   
     
