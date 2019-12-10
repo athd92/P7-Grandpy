@@ -22,7 +22,9 @@ class Wikipedia:
                 place = wikipedia.summary(e.options[0], sentences=1)
             except wikipedia.exceptions.DisambiguationError as e:
                 place = wikipedia.summary(e.options[1], sentences=1)       
-        
+            except IndexError:
+                print("error")
+                place = {"error": "no result"}
         return place
 
 

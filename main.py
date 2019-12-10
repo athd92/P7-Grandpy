@@ -27,14 +27,21 @@ def createEntry():
     questionLessWords = questionJson.after_deleted_words()
     questionRegexWords = questionJson.extract_question()
     finalQuery = questionJson.extract_question()
+    print(finalQuery)
     geocodingQuery = GoogleMaps(finalQuery)
-    city = geocodingQuery.get_geocode()      
-    localisation = city[0]['geometry']['location']  # coordonates lat and long
-    cityName = city[0]['address_components'][0]['long_name']  # name of the city
-    grandpyStory = Wikipedia(finalQuery)    # keep only the city name from google infos
-    story = grandpyStory.get_request()  # request to mediawiki to get story   
+    city = geocodingQuery.get_geocode()  
+    if city == []:        
+        return jsonify({"data": "no result", 'localisation': 'no localisation possible'})
+        
+    else:
+        print("CITY")    
+        print(city)
+        localisation = city[0]['geometry']['location']  # coordonates lat and long
+        cityName = city[0]['address_components'][0]['long_name']  # name of the city
+        grandpyStory = Wikipedia(finalQuery)    # keep only the city name from google infos
+        story = grandpyStory.get_request()  # request to mediawiki to get story   
 
-    return jsonify({"data": story, 'localisation': localisation})
+        return jsonify({"data": story, 'localisation': localisation})
 
 
 

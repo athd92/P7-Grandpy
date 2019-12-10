@@ -12,7 +12,13 @@ $(document).ready(function(){
 
 $(document).on('keypress',function(e) { // listen enter key
     if(e.which == 13) {
-        send_ajax_request();
+        if($('#message').val() == ""){
+            alert('Aucune demande??')
+        }else if($('#message').val().length < 3){
+            alert('Moins de trois lettres??')
+        }else{
+            send_ajax_request();
+        }        
     }
 });
 
@@ -21,8 +27,8 @@ $('#newSearch').click(function(){   // reload page for new search
     $('#message').val('');
 })
 
-function initMap(latitude, longitude){  // initialisation of googlemaps
-    
+function initMap(latitude, longitude){  // initialisation of googlemaps    
+
     // map options    
     var options = {
         zoom:10,
@@ -72,14 +78,21 @@ function send_ajax_request(){   // the ajax request function
         },
 
         success:function(data){      
-            if(content == false){                    
-                $('#getData').hide();
-                $('#newSearch').show();
-                $('.divstory').append('<div id="mess"><p>' + data.data + '</p></div>');   
-                
-     
-                display_map(data.localisation.lat, data.localisation.lng);
-                content = true;
+            if(content == false){       // no city understand by googlemaps
+                if(data.localisation == 'no localisation possible'){
+                    $('#getData').hide();
+                    $('#reloadMessage').show();
+                    $('#notFound').show();
+                    $('#newSearch').show();
+                }
+                else{                
+                    console.log(data);   // success request display maps
+                    $('#getData').hide();
+                    $('#newSearch').show();
+                    $('.divstory').append('<div id="mess"><p>' + data.data + '</p></div>');   
+                    display_map(data.localisation.lat, data.localisation.lng);
+                    content = true;
+                }
             }else{
 
             }
@@ -97,4 +110,3 @@ function send_ajax_request(){   // the ajax request function
         }
    });
 };
-  
