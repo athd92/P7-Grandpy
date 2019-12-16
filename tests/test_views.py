@@ -13,7 +13,8 @@ def test_home_page_view(client):
     assert response.status == '200 OK'
     html = response.get_data(as_text=True)
     message = "Grandpy"
-    assert  message in html
+    assert message in html
+
 
 def test_error_page_view(client):
     
@@ -22,3 +23,5 @@ def test_error_page_view(client):
     html = response.get_data(as_text=True)
     message = "La page que vous cherchiez n'existe pas ou n'est plus accessible"
     assert message in html
+
+

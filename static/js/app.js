@@ -27,14 +27,14 @@ $('#newSearch').click(function(){   // reload page for new search
     $('#message').val('');
 })
 
-function initMap(latitude, longitude){  // initialisation of googlemaps    
+function initMap(latitude, longitude, data){  // initialisation of googlemaps    
 
     // map options    
     var options = {
-        zoom:10,
+        zoom:11,
         center:{lat: latitude, lng: longitude},
-    }    
-
+    } 
+    
     // new map
     var map = new google.maps.Map(document.getElementById('map'), options);   
 
@@ -43,16 +43,22 @@ function initMap(latitude, longitude){  // initialisation of googlemaps
         position:{lat: latitude, lng: longitude},
         map:map
     });
+
+    var infowindow = new google.maps.InfoWindow();
+    infowindow.setContent(data.address);
+    infowindow.open(map, marker);
+    
+
 };
 
 
-function display_map(latitude, longitude){    // setting render on DOM
+function display_map(latitude, longitude, data){    // setting render on DOM
         $('#elements').fadeIn(5000);          
         $('.divmap').append('<div id="map"></div>');
         $('.divmap').hide();
         $('.divstory').fadeIn(1000);
         $('.divmap').fadeIn(1000);                       
-        initMap(latitude, longitude);        
+        initMap(latitude, longitude, data);        
     };
     
 
@@ -89,8 +95,8 @@ function send_ajax_request(){   // the ajax request function
                     console.log(data);   // success request display maps
                     $('#getData').hide();
                     $('#newSearch').show();
-                    $('.divstory').append('<div id="mess"><p>' + data.data + '</p></div>');   
-                    display_map(data.localisation.lat, data.localisation.lng);
+                    $('.divstory').append('<div id="mess"><h3>Biensur mon poussin... Voici:<br></h3><p>' + data.data + '</p></div>');   
+                    display_map(data.localisation.lat, data.localisation.lng, data);
                     content = true;
                 }
             }else{

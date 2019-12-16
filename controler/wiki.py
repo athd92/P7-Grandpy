@@ -19,9 +19,9 @@ class Wikipedia:
             place = wikipedia.summary(f"{self.query}", sentences=2) # two first sentences
         except wikipedia.exceptions.DisambiguationError as e:         
             try:
-                place = wikipedia.summary(e.options[0], sentences=1)
+                place = wikipedia.summary(e.options[0], sentences=2)
             except wikipedia.exceptions.DisambiguationError as e:
-                place = wikipedia.summary(e.options[1], sentences=1)       
+                place = wikipedia.summary(e.options[1], sentences=2)       
             except IndexError:
                 print("error")
                 place = {"error": "no result"}

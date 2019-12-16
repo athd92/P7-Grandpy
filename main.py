@@ -29,19 +29,31 @@ def createEntry():
     finalQuery = questionJson.extract_question()
     print(finalQuery)
     geocodingQuery = GoogleMaps(finalQuery)
-    city = geocodingQuery.get_geocode()  
+    geo = geocodingQuery.get_geocode()  
+    city = geo[0]
+    try:
+        address = geo[1]
+    except:
+        address = "C'est ici mon petit..."
+        
+    print('CITY')
+    print(city)
+    print('ADDRESS')
+    print(address)
     if city == []:        
         return jsonify({"data": "no result", 'localisation': 'no localisation possible'})
         
     else:
-        print("CITY")    
-        print(city)
-        localisation = city[0]['geometry']['location']  # coordonates lat and long
-        cityName = city[0]['address_components'][0]['long_name']  # name of the city
+        try:
+            localisation = city['geometry']['location']  # coordonates lat and long
+            cityName = city['address_components'][0]['long_name']  # name of the city
+        except:
+            localisation = city[0]['geometry']['location']  # coordonates lat and long
+            cityName = city[0]['address_components'][0]['long_name']  # name of the city
+        
         grandpyStory = Wikipedia(finalQuery)    # keep only the city name from google infos
         story = grandpyStory.get_request()  # request to mediawiki to get story   
-
-        return jsonify({"data": story, 'localisation': localisation})
+        return jsonify({"data": story, 'localisation': localisation, 'address': address})
 
 
 
