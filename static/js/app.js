@@ -1,5 +1,6 @@
 let content = false;
 
+
 $(document).ready(function(){
         $('#reloadMessage').hide();
         $('#newSearch').hide();
@@ -86,6 +87,7 @@ function send_ajax_request(){   // the ajax request function
         success:function(data){      
             if(content == false){       // no city understand by googlemaps
                 if(data.localisation == 'no localisation possible'){
+                    $('#message').css({ "opacity": 0.1 });
                     $('#getData').hide();
                     $('#reloadMessage').show();
                     $('#notFound').show();
@@ -93,6 +95,7 @@ function send_ajax_request(){   // the ajax request function
                 }
                 else{                
                     console.log(data);   // success request display maps
+                    $('#message').css({ "opacity": 0.1 });
                     $('#getData').hide();
                     $('#newSearch').show();
                     $('.divstory').append('<div id="mess"><h3>Biensur mon poussin... Voici:<br></h3><p>' + data.data + '</p></div>');   
@@ -104,9 +107,9 @@ function send_ajax_request(){   // the ajax request function
             }
         },
 
-        error:function(e){
-            console.error(e);
+        error:function(e){            
             if(content == false){
+                $('#message').css({ "opacity": 0.1 });
                 $('#getData').hide();
                 $('#reloadMessage').show();
                 $('#notFound').show();

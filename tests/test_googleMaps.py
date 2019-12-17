@@ -34,7 +34,8 @@ def test_request_API_googlemaps_mock(monkeypatch):
         response = MockResponse(url)
         result = response.moock_get_geocode_googlemaps()
         assert result[0]['address_components'][0]['long_name'] == 'lyon'
-        assert result[0]['geometry']['location'] == {'lat': 45.764043, 'lng': 4.835659}
+        assert result[0]['geometry']['location']['lat'] == 45.764043
+        assert result[0]['geometry']['location']['lng'] == 4.835659
 
     monkeypatch.setattr('controler.googleMaps', moock_get_geocode_googlemaps)
 

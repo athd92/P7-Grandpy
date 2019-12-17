@@ -1,5 +1,6 @@
 from controler.wiki import Wikipedia as script
 import wikipedia
+import json
 
 
 def test_request_API_wikipedia(monkeypatch):
