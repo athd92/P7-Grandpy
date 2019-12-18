@@ -10,7 +10,7 @@ def client():
 
 def test_home_page_view(client):
     'Test function for the "/" view '
-    
+
     response = client.get('/')
     assert response.status == '200 OK'
     html = response.get_data(as_text=True)
@@ -24,15 +24,13 @@ def test_error_page_view(client):
     response = client.get('/wrong-way')
     assert response.status == "404 NOT FOUND"
     html = response.get_data(as_text=True)
-    message = "La page que vous cherchiez\
-               n'existe pas ou n'est plus accessible"
+    message = "n'existe pas ou n'est plus accessible"
     assert message in html
 
     response = client.get('/admin')
     assert response.status == "404 NOT FOUND"
     html = response.get_data(as_text=True)
-    message = "La page que vous cherchiez\
-               n'existe pas ou n'est plus accessible"
+    message = "n'existe pas ou n'est plus accessible"
     assert message in html
 
 
