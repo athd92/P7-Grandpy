@@ -1,6 +1,12 @@
 /* ################################################## SMALLEST ######################################################## */
 
 @media (min-width: 150px) { 
+
+    html{
+        width: 100%;
+        height: auto;
+    }
+    
     h1, h2 {
         font-size: 40px;
         text-align: center;
@@ -104,7 +110,8 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    
+    width: 100%;
+    height: auto;
 }
 
 #loader img{

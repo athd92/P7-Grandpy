@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">    
     <title>Grandpy</title>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -16,6 +15,7 @@
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 </head>
 
+
 <body>
     <div class="full-screen">
     <!-- HEADER -->
@@ -25,21 +25,19 @@
         </nav>    
     </header>
 
+  <div class="titleGrandpy">
+      <h1>Grandpy robot</h1>
+  </div>
 
-<div class="titleGrandpy">
-    <h1>Grandpy robot</h1>
-</div>
+  <div class="titleStory">
+      <h2>L'histoire d'une histoire...</h2>
+  </div>
 
-<div class="titleStory">
-    <h2>L'histoire d'une histoire...</h2>
-</div>
-
-    <div class="searchBar">      
-          <input type="text" class="form-control" id='message' cols='30' rows="3" placeholder="Bonjour Grandpy!">
-          <button class="btn btn-primary " id="getData">Dis moi Grandpy...</button>
-          <button class="btn btn-success" id="newSearch">Nouvelle recherche!</button>
-
-    </div>
+  <div class="searchBar">      
+        <input type="text" class="form-control" id='message' cols='30' rows="3" placeholder="Bonjour Grandpy!">
+        <button class="btn btn-primary " id="getData">Dis moi Grandpy...</button>
+        <button class="btn btn-success" id="newSearch">Nouvelle recherche!</button>
+  </div>
 
 <div class="container fluid" id='reloadMessage'>
   <h5>Arf, je n'ai pas trouvé grand chose à te raconter... Une autre question peut être?</h5>
@@ -66,11 +64,8 @@
   </div>
 </section>
 
-  <div class="footer">
-    
+  <div class="footer">    
     <h2>Antoine THIBAUD - Projet 07 - <a href="https://github.com/athd92/P7-Grandpy">Github</a></h2>
-    
-
   </div>
 
 <script src="/static/js/jquery.js"></script>

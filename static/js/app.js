@@ -1,6 +1,5 @@
 let content = false;
 
-
 $(document).ready(function(){
         $('#reloadMessage').hide();
         $('#newSearch').hide();
@@ -28,8 +27,8 @@ $('#newSearch').click(function(){   // reload page for new search
     $('#message').val('');
 })
 
-function initMap(latitude, longitude, data){  // initialisation of googlemaps    
-
+function initMap(latitude, longitude, data){  // initialisation of googlemaps   
+    
     // map options    
     var options = {
         zoom:11,
