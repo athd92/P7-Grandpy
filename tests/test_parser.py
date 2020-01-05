@@ -26,15 +26,15 @@ def test_to_lower_and_no_accents(query):
     assert question.to_lower_string() == 'ou se trouve la ville de dijon?'
 
 
-def test_function_to_delete_stop_words(query):  
+def test_function_to_delete_stop_words(query):
     'Test function to delete words present in a stop-word list'
 
-    question = script.Parser(query)        
+    question = script.Parser(query)
     question.lowerStringQuestion = 'trouve ville dijon?'
     assert question.after_deleted_words() == 'trouve ville dijon?'
 
 
-def test_extract_re_words_of_the_question(query):    
+def test_extract_re_words_of_the_question(query):
     'Test of the function that keeps only the last and usefull words'
 
     question = script.Parser(query)

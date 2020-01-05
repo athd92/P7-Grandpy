@@ -9,7 +9,7 @@ from controler.googleMaps import GoogleMaps
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
-def homepage(): 
+def homepage():
 
     error = ""
     if request.method == 'POST':
@@ -30,8 +30,8 @@ def createEntry():
     geo = geocodingQuery.get_geocode()
     if geo == []:
         return jsonify({"data": "no result",
-        'localisation': 'no localisation possible'})
-    else:  
+                        'localisation': 'no localisation possible'})
+    else:
         city = geo[0]
         try:
             address = geo[1]
@@ -40,20 +40,21 @@ def createEntry():
 
         if city == []:
             return jsonify({"data": "no result",
-            'localisation': 'no localisation possible'})
-            
+                            'localisation': 'no localisation possible'})
+
         else:
             try:
-                localisation = city['geometry']['location']  # coordonates lat and long
-                cityName = city['address_components'][0]['long_name']  # name of the city
+                localisation = city['geometry']['location']  # coordonates
+                cityName = city['address_components'][0]['long_name']  # name
             except:
-                localisation = city[0]['geometry']['location']  # coordonates lat and long
-                cityName = city[0]['address_components'][0]['long_name']  # name of the city
-            
-            grandpyStory = Wikipedia(finalQuery)    # keep only the city name from google infos
-            story = grandpyStory.get_request()  # request to mediawiki to get story   
-            return jsonify({"data": story, 'localisation': localisation, 'address': address})
+                localisation = city[0]['geometry']['location']
+                cityName = city[0]['address_components'][0]['long_name']
 
+            grandpyStory = Wikipedia(finalQuery)  # keep only city name
+            story = grandpyStory.get_request()  # request story
+            return jsonify({"data": story,
+                            'localisation': localisation,
+                            'address': address})
 
 
 @app.errorhandler(404)

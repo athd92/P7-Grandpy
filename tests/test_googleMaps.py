@@ -1,4 +1,5 @@
 from controler.googleMaps import GoogleMaps
+import json
 
 
 def test_request_API_googlemaps_mock(monkeypatch):
@@ -17,7 +18,7 @@ def test_request_API_googlemaps_mock(monkeypatch):
                 {'bounds': {'northeast': {'lat': 45.808425, 'lng': 4.898393},
                  'southwest': {'lat': 45.707486, 'lng': 4.7718489}},
                  'location': {'lat': 45.764043,  'lng': 4.835659},
-                 'location_type': 'APPROXIMATE', 'viewport': 
+                 'location_type': 'APPROXIMATE', 'viewport':
                  {'northeast': {'lat': 45.808425, 'lng': 4.898393},
                   'southwest': {'lat': 45.707486, 'lng': 4.7718489}}},
                 'place_id': 'ChIJl4foalHq9EcR8CG75CqrCAQ',
@@ -25,7 +26,7 @@ def test_request_API_googlemaps_mock(monkeypatch):
 
     class MockResponse:
         '''Class defined to to the googlemaps requests'''
-        
+
         def read(self):
             results_string = json.dumps(results)  # creates a string
             results_bytes = results_string.encode()

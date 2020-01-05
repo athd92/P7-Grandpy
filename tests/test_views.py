@@ -32,6 +32,3 @@ def test_error_page_view(client):
     html = response.get_data(as_text=True)
     message = "n'existe pas ou n'est plus accessible"
     assert message in html
-
-
-

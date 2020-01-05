@@ -94,17 +94,14 @@ function send_ajax_request(){   // the ajax request function
                     $('#newSearch').show();
                 }
                 else{                
-                    console.log(data);   // success request display maps
-                    $('#message').css({ "opacity": 0.1 });
+                    $('#message').css({ "opacity": 0.1 }); // success request display maps
                     $('#message').prop('disabled', true);
                     $('#getData').hide();
                     $('#newSearch').show();
-                    $('.divstory').append('<div id="mess"><h3>Biensur mon poussin... Voici:<br></h3><p>' + data.data + '</p></div>');   
+                    $('.divstory').append('<div id="mess"><h3>Bien sûr mon poussin... Voici:<br></h3><p>' + data.data + '</p></div>');   
                     display_map(data.localisation.lat, data.localisation.lng, data);
                     content = true;
                 }
-            }else{
-
             }
         },
 
