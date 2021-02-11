@@ -6,7 +6,7 @@ from controler.parser import Parser
 from controler.wiki import Wikipedia
 from controler.googleMaps import GoogleMaps
 
-app = Flask(__name__) # modif sur developper
+app = Flask(__name__) # modif  annulee apres commit
 
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
